@@ -7,7 +7,6 @@ import {
   BookOpen,
   FileText,
   Trophy,
-  Users,
   GraduationCap,
   Home,
 } from "lucide-react";

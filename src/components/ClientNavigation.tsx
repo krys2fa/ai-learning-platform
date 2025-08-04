@@ -9,7 +9,6 @@ import {
   BookOpen,
   FileText,
   Trophy,
-  Users,
   GraduationCap,
   Home,
   Menu,

@@ -21,9 +21,9 @@ export default function LandingPage() {
             from all careers.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4 sm:px-0">
-            <Button className="w-full sm:w-auto px-6 py-3 text-base sm:text-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">
-              Apply for Scholarship
-            </Button>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto">
+              &quot;AI is the new electricity.&quot;
+            </p>
             <Button
               variant="outline"
               className="w-full sm:w-auto px-6 py-3 text-base sm:text-lg border-2 hover:bg-gray-50 transition-colors"
@@ -36,7 +36,7 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 md:space-y-12">
           <section className="bg-white shadow-lg rounded-2xl p-6 sm:p-8">
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">
-              What You'll Learn
+              What You&#39;ll Learn
             </h2>
             <ul className="space-y-3 sm:space-y-4">
               <li className="flex items-start text-gray-700">
@@ -133,8 +133,8 @@ export default function LandingPage() {
             <div className="space-y-6 sm:space-y-8">
               <blockquote className="border-l-4 border-blue-500 pl-4 sm:pl-6">
                 <p className="italic text-gray-700 mb-2 text-sm sm:text-base leading-relaxed">
-                  "As a teacher, I now use AI to grade and create lesson plans.
-                  This course made it so simple."
+                  &quot;As a teacher, I now use AI to grade and create lesson
+                  plans. This course made it so simple.&quot;
                 </p>
                 <cite className="text-xs sm:text-sm text-gray-500 not-italic">
                   — Mariam, Lagos
@@ -142,7 +142,8 @@ export default function LandingPage() {
               </blockquote>
               <blockquote className="border-l-4 border-blue-500 pl-4 sm:pl-6">
                 <p className="italic text-gray-700 mb-2 text-sm sm:text-base leading-relaxed">
-                  "I built my first chatbot after just 6 weeks of the course!"
+                  &quot;I built my first chatbot after just 6 weeks of the
+                  course!&quot;
                 </p>
                 <cite className="text-xs sm:text-sm text-gray-500 not-italic">
                   — Kwame, Accra

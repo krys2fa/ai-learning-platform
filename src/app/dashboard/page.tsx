@@ -1,14 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  BookOpen,
-  Calendar,
-  Trophy,
-  Users,
-  GraduationCap,
-  FileText,
-} from "lucide-react";
+import { BookOpen, Calendar, Trophy, Users, FileText } from "lucide-react";
 import ClientNavigation from "@/components/ClientNavigation";
 
 export default function Dashboard() {
@@ -23,7 +16,7 @@ export default function Dashboard() {
               Dashboard
             </h1>
             <p className="text-sm sm:text-base text-gray-600">
-              Welcome back! Here's your learning progress.
+              Welcome back! Here&#39;s your learning progress.
             </p>
           </div>
 
@@ -102,7 +95,7 @@ export default function Dashboard() {
                   variant="outline"
                 >
                   <Calendar className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                  View Today's Classes
+                  View Today&#39;s Classes
                 </Button>
                 <Button
                   className="w-full justify-start text-sm sm:text-base h-10 sm:h-11"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+// ...existing code...
 import { Trophy, Medal, Crown, Award } from "lucide-react";
 import ClientNavigation from "@/components/ClientNavigation";
 
