@@ -1,4 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Learning Platform
+
+This is a modern, mobile-responsive AI learning platform built with [Next.js](https://nextjs.org). It offers a hands-on, beginner-friendly AI course for learners in Ghana and Nigeria, featuring live classes, assignments, exams, and a leaderboard.
+
+## Features
+
+- 📱 **Mobile Responsive:** Fully optimized for all device sizes
+- 🏆 **Leaderboard:** Track your rank and progress among fellow learners
+- 🎓 **Live Classes:** Join interactive sessions with expert instructors
+- 📝 **Assignments & Exams:** Submit work, view grades, and track deadlines
+- 📚 **Curriculum:** Structured modules from AI basics to building apps
+- 👩‍💻 **Dashboard:** Monitor your learning stats and quick actions
+- 💬 **Student Testimonials:** Real feedback from past learners
+- 🔒 **Scholarships & Enrollment:** Apply for financial aid or enroll directly
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org) (App Router)
+- [React](https://react.dev)
+- [Tailwind CSS](https://tailwindcss.com) for styling
+- [Radix UI](https://www.radix-ui.com/) for accessible components
+- [Lucide React](https://lucide.dev/) for icons
+- [TypeScript](https://www.typescriptlang.org/) for type safety
+
+## Mobile Responsiveness
+
+All pages and components are designed to be fully mobile responsive:
+
+- Navigation adapts to mobile with a hamburger menu
+- Cards, tables, and grids stack and scale for small screens
+- Touch targets and font sizes optimized for accessibility
+- Viewport configuration follows Next.js best practices
 
 ## Getting Started
 
@@ -19,6 +50,27 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Project Structure
+
+```
+eslint.config.mjs
+next-env.d.ts
+next.config.ts
+package.json
+postcss.config.mjs
+README.md
+tsconfig.json
+public/
+  ...assets...
+src/
+  app/
+    ...pages...
+  components/
+    ...UI components...
+  lib/
+    ...utilities...
+```
 
 ## Learn More
 
