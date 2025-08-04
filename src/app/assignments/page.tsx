@@ -58,15 +58,15 @@ export default function Assignments() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "submitted":
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
+        return <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500" />;
       case "pending":
-        return <Clock className="h-5 w-5 text-blue-500" />;
+        return <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-blue-500" />;
       case "overdue":
-        return <AlertCircle className="h-5 w-5 text-red-500" />;
+        return <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-500" />;
       case "upcoming":
-        return <Calendar className="h-5 w-5 text-gray-500" />;
+        return <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />;
       default:
-        return <FileText className="h-5 w-5 text-gray-500" />;
+        return <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />;
     }
   };
 
@@ -94,100 +94,115 @@ export default function Assignments() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <ClientNavigation />
-      <div className="min-h-screen bg-gray-50 p-6">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               Assignments
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Track your assignments and submit your work on time.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Total</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium">
+                  Total
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">15</div>
+                <div className="text-xl sm:text-2xl font-bold">15</div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Submitted</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium">
+                  Submitted
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600">8</div>
+                <div className="text-xl sm:text-2xl font-bold text-green-600">
+                  8
+                </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Pending</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium">
+                  Pending
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-blue-600">5</div>
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">
+                  5
+                </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   Average Grade
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-purple-600">B+</div>
+                <div className="text-xl sm:text-2xl font-bold text-purple-600">
+                  B+
+                </div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {assignments.map((assignment) => {
               const daysUntilDue = getDaysUntilDue(assignment.dueDate);
 
               return (
-                <Card key={assignment.id}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start space-x-4">
+                <Card
+                  key={assignment.id}
+                  className="hover:shadow-md transition-shadow"
+                >
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-4 lg:space-y-0">
+                      <div className="flex items-start space-x-3 sm:space-x-4 flex-1">
                         <div className="flex-shrink-0 mt-1">
                           {getStatusIcon(assignment.status)}
                         </div>
-                        <div className="flex-grow">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                        <div className="flex-grow min-w-0">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 mb-2">
+                            <h3 className="text-base sm:text-lg font-semibold text-gray-900 break-words">
                               {assignment.title}
                             </h3>
                             <span
-                              className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                              className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
                                 assignment.status
-                              )}`}
+                              )} mt-1 sm:mt-0`}
                             >
                               {assignment.status.charAt(0).toUpperCase() +
                                 assignment.status.slice(1)}
                             </span>
                           </div>
-                          <p className="text-gray-600 mb-2">
+                          <p className="text-sm sm:text-base text-gray-600 mb-2 break-words">
                             {assignment.description}
                           </p>
-                          <div className="flex items-center space-x-4 text-sm text-gray-500">
+                          <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-gray-500 space-y-1 sm:space-y-0 sm:space-x-4">
                             <span className="font-medium">
                               {assignment.course}
                             </span>
-                            <span>•</span>
+                            <span className="hidden sm:inline">•</span>
                             <span>{assignment.points} points</span>
-                            <span>•</span>
+                            <span className="hidden sm:inline">•</span>
                             <span>Due: {assignment.dueDate}</span>
                             {assignment.status !== "submitted" &&
                               daysUntilDue >= 0 && (
                                 <>
-                                  <span>•</span>
+                                  <span className="hidden sm:inline">•</span>
                                   <span
                                     className={
                                       daysUntilDue <= 2
@@ -203,7 +218,7 @@ export default function Assignments() {
                               )}
                             {assignment.status === "overdue" && (
                               <>
-                                <span>•</span>
+                                <span className="hidden sm:inline">•</span>
                                 <span className="text-red-600 font-medium">
                                   {Math.abs(daysUntilDue)} days overdue
                                 </span>
@@ -211,14 +226,14 @@ export default function Assignments() {
                             )}
                           </div>
                           {assignment.submittedDate && (
-                            <div className="text-sm text-gray-500 mt-1">
+                            <div className="text-xs sm:text-sm text-gray-500 mt-1">
                               Submitted: {assignment.submittedDate}
                             </div>
                           )}
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 lg:flex-shrink-0">
                         {assignment.grade && (
                           <div className="text-center">
                             <div className="text-lg font-bold text-green-600">
@@ -229,19 +244,41 @@ export default function Assignments() {
                         )}
 
                         {assignment.status === "submitted" && (
-                          <Button variant="outline">View Feedback</Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-full sm:w-auto text-xs sm:text-sm"
+                          >
+                            View Feedback
+                          </Button>
                         )}
 
                         {assignment.status === "pending" && (
-                          <Button>Submit</Button>
+                          <Button
+                            size="sm"
+                            className="w-full sm:w-auto text-xs sm:text-sm"
+                          >
+                            Submit
+                          </Button>
                         )}
 
                         {assignment.status === "overdue" && (
-                          <Button variant="destructive">Submit Late</Button>
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            className="w-full sm:w-auto text-xs sm:text-sm"
+                          >
+                            Submit Late
+                          </Button>
                         )}
 
                         {assignment.status === "upcoming" && (
-                          <Button variant="outline" disabled>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            disabled
+                            className="w-full sm:w-auto text-xs sm:text-sm"
+                          >
                             Not Available
                           </Button>
                         )}

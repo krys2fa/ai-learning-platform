@@ -41,13 +41,13 @@ export default function Exams() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "completed":
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
+        return <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500" />;
       case "available":
-        return <FileText className="h-5 w-5 text-blue-500" />;
+        return <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-blue-500" />;
       case "upcoming":
-        return <Clock className="h-5 w-5 text-orange-500" />;
+        return <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-orange-500" />;
       default:
-        return <AlertCircle className="h-5 w-5 text-gray-500" />;
+        return <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />;
     }
   };
 
@@ -65,81 +65,95 @@ export default function Exams() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <ClientNavigation />
-      <div className="min-h-screen bg-gray-50 p-6">
+      <div className="p-4 sm:p-6 lg:p-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               Exams & Assessments
             </h1>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Track your exam progress and upcoming assessments.
             </p>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   Total Exams
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">12</div>
+                <div className="text-xl sm:text-2xl font-bold">12</div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Completed</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium">
+                  Completed
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-green-600">8</div>
+                <div className="text-xl sm:text-2xl font-bold text-green-600">
+                  8
+                </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">Pending</CardTitle>
+                <CardTitle className="text-xs sm:text-sm font-medium">
+                  Pending
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-blue-600">3</div>
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">
+                  3
+                </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   Average Score
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-purple-600">78%</div>
+                <div className="text-xl sm:text-2xl font-bold text-purple-600">
+                  78%
+                </div>
               </CardContent>
             </Card>
           </div>
 
           {/* Exams List */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {exams.map((exam) => (
-              <Card key={exam.id}>
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      {getStatusIcon(exam.status)}
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">
+              <Card key={exam.id} className="hover:shadow-md transition-shadow">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                    <div className="flex items-start sm:items-center space-x-3 sm:space-x-4 flex-1">
+                      <div className="flex-shrink-0 mt-1 sm:mt-0">
+                        {getStatusIcon(exam.status)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 break-words">
                           {exam.title}
                         </h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 text-xs sm:text-sm text-gray-600 mt-1 space-y-1 sm:space-y-0">
                           <span className="flex items-center">
-                            <Clock className="h-4 w-4 mr-1" />
+                            <Clock className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
                             {exam.duration}
                           </span>
+                          <span className="hidden sm:inline">•</span>
                           <span>{exam.questions} questions</span>
+                          <span className="hidden sm:inline">•</span>
                           <span>
                             Attempts: {exam.attempts}/{exam.maxAttempts}
                           </span>
@@ -147,7 +161,7 @@ export default function Exams() {
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 lg:flex-shrink-0">
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
                           exam.status
@@ -158,7 +172,7 @@ export default function Exams() {
                       </span>
 
                       {exam.status === "completed" && exam.score && (
-                        <div className="text-right">
+                        <div className="text-center sm:text-right">
                           <div className="text-lg font-bold text-green-600">
                             {exam.score}
                           </div>
@@ -167,11 +181,16 @@ export default function Exams() {
                       )}
 
                       {exam.status === "available" && (
-                        <Button>Start Exam</Button>
+                        <Button
+                          size="sm"
+                          className="w-full sm:w-auto text-xs sm:text-sm"
+                        >
+                          Start Exam
+                        </Button>
                       )}
 
                       {exam.status === "upcoming" && exam.dueDate && (
-                        <div className="text-right">
+                        <div className="text-center sm:text-right">
                           <div className="text-sm font-medium">
                             Due: {exam.dueDate}
                           </div>
@@ -182,7 +201,13 @@ export default function Exams() {
                       )}
 
                       {exam.status === "completed" && (
-                        <Button variant="outline">View Results</Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full sm:w-auto text-xs sm:text-sm"
+                        >
+                          View Results
+                        </Button>
                       )}
                     </div>
                   </div>
@@ -192,7 +217,7 @@ export default function Exams() {
           </div>
 
           {/* Instructions */}
-          <Card className="mt-8">
+          <Card className="mt-6 sm:mt-8 hover:shadow-md transition-shadow">
             <CardHeader>
               <CardTitle>Exam Guidelines</CardTitle>
             </CardHeader>
