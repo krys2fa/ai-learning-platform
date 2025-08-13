@@ -1,23 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
   --foreground: #171717;
+  --accent: #6366f1;
+  --accent-gradient: linear-gradient(90deg, #6366f1 0%, #06b6d4 100%);
+  --glass-bg: rgba(255,255,255,0.7);
+  --glass-blur: 16px;
+  --font-sans: 'Geist', Arial, Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Removed invalid @theme inline block */
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+/* End of file */
 
 * {
   box-sizing: border-box;
@@ -33,12 +34,11 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  /* Prevent horizontal scroll on mobile */
+  font-family: var(--font-sans);
   overflow-x: hidden;
-  /* Improve text rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 /* Improve touch targets on mobile */
@@ -58,6 +58,57 @@ body {
 img {
   max-width: 100%;
   height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(99,102,241,0.08);
+}
+/* Glassmorphism card style */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 8px 32px rgba(99,102,241,0.12);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(99,102,241,0.08);
+  transition: box-shadow 0.3s;
+}
+.glass-card:hover {
+  box-shadow: 0 12px 40px rgba(99,102,241,0.18);
+}
+
+/* Accent gradient text */
+.accent-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Modern button style */
+.modern-btn {
+  border-radius: 999px;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+.modern-btn:hover, .modern-btn:focus {
+  background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+  box-shadow: 0 4px 16px rgba(99,102,241,0.18);
+  transform: translateY(-2px) scale(1.03);
+}
+.modern-btn:active {
+  transform: scale(0.98);
+}
+
+/* Animated card entrance */
+.fade-in {
+  animation: fadeInUp 0.7s cubic-bezier(.23,1,.32,1);
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 }
 
 /* Improve focus visibility for accessibility */

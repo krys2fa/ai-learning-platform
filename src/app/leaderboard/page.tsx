@@ -133,15 +133,15 @@ export default function Leaderboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <ClientNavigation />
-      <div className="p-4 sm:p-6 lg:p-8">
+      <div className="py-10 px-4 sm:px-8 flex flex-col items-center">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+          <div className="mb-10 text-center fade-in">
+            <h1 className="accent-gradient text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
               Leaderboard
             </h1>
-            <p className="text-sm sm:text-base text-gray-600">
-              See how you rank among fellow AI learners!
+            <p className="text-lg text-gray-600">
+              See who&#39;s leading the way in AI learning!
             </p>
           </div>
 

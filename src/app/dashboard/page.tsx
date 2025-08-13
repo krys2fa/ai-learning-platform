@@ -6,16 +6,16 @@ import ClientNavigation from "@/components/ClientNavigation";
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
       <ClientNavigation />
-      <div className="p-4 sm:p-6 lg:p-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="py-10 px-4 sm:px-8 flex flex-col items-center">
+        <div className="max-w-7xl w-full mx-auto">
           {/* Header */}
-          <div className="mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+          <div className="mb-10 text-center fade-in">
+            <h1 className="accent-gradient text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
               Dashboard
             </h1>
-            <p className="text-sm sm:text-base text-gray-600">
+            <p className="text-lg text-gray-600">
               Welcome back! Here&#39;s your learning progress.
             </p>
           </div>

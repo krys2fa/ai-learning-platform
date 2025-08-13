@@ -94,16 +94,16 @@ export default function Assignments() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
       <ClientNavigation />
-      <div className="p-4 sm:p-6 lg:p-8">
+      <div className="py-10 px-4 sm:px-8 flex flex-col items-center">
         <div className="max-w-6xl mx-auto">
           <div className="mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="accent-gradient text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
               Assignments
             </h1>
-            <p className="text-sm sm:text-base text-gray-600">
-              Track your assignments and submit your work on time.
+            <p className="text-lg text-gray-600">
+              Track your assignments and submissions.
             </p>
           </div>
 

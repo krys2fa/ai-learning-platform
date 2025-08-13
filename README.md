@@ -2,6 +2,8 @@
 
 This is a modern, mobile-responsive AI learning platform built with [Next.js](https://nextjs.org). It offers a hands-on, beginner-friendly AI course for learners in Ghana and Nigeria, featuring live classes, assignments, exams, and a leaderboard.
 
+Live Preview: https://ai-learning-platform-olive.vercel.app/
+
 ## Features
 
 - 📱 **Mobile Responsive:** Fully optimized for all device sizes

@@ -4,38 +4,42 @@ import ClientNavigation from "@/components/ClientNavigation";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
       <ClientNavigation />
-      <main className="min-h-screen bg-gradient-to-b from-white to-gray-100 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-        <section className="max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-            Learn AI for Just $10/month – No Experience Needed
+      <main className="min-h-screen py-12 px-4 sm:px-8 flex flex-col items-center">
+        <section className="max-w-4xl w-full mx-auto text-center mb-12 fade-in">
+          <h1 className="accent-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+            Learn AI for Just $10/month
+            <span className="block text-xl sm:text-2xl font-normal accent-gradient mt-2">
+              No Experience Needed
+            </span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 max-w-3xl mx-auto">
-            Join 1,000+ learners in Ghana and Nigeria using AI to grow their
-            skills and careers.
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+            Join{" "}
+            <span className="font-bold accent-gradient">1,000+ learners</span>{" "}
+            in Ghana and Nigeria using AI to grow their skills and careers.
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto">
-            From August to December 2025, take a 4-month hands-on AI course with
-            live classes, projects, and expert guidance — perfect for beginners
-            from all careers.
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+            From August to December 2025, take a{" "}
+            <span className="font-bold accent-gradient">
+              4-month hands-on AI course
+            </span>{" "}
+            with live classes, projects, and expert guidance — perfect for
+            beginners from all careers.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-4 sm:px-0">
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-8 sm:mb-10 max-w-2xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10 px-4 sm:px-0">
+            <p className="text-base sm:text-lg text-gray-500 mb-0 max-w-2xl mx-auto italic">
               &quot;AI is the new electricity.&quot;
             </p>
-            <Button
-              variant="outline"
-              className="w-full sm:w-auto px-6 py-3 text-base sm:text-lg border-2 hover:bg-gray-50 transition-colors"
-            >
+            <Button className="modern-btn px-8 py-4 text-lg shadow-lg">
               Enroll for $10/month
             </Button>
           </div>
         </section>
 
-        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 md:space-y-12">
-          <section className="bg-white shadow-lg rounded-2xl p-6 sm:p-8">
-            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">
+        <div className="max-w-4xl w-full mx-auto space-y-10 sm:space-y-12 md:space-y-16">
+          <section className="glass-card p-8 sm:p-10 fade-in">
+            <h2 className="accent-gradient text-2xl sm:text-3xl font-bold mb-6">
               What You&#39;ll Learn
             </h2>
             <ul className="space-y-3 sm:space-y-4">
