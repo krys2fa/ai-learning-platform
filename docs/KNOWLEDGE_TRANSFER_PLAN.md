@@ -5,6 +5,7 @@
 - Ensure all team members can confidently use React and related technologies.
 - Provide ongoing mentorship and support.
 - Document solutions to common problems and best practices.
+- Ensure secure role-based access using Firebase and Redux.
 
 ## Methods & Timeline
 
@@ -13,6 +14,8 @@
 - Week 1: Pair programming sessions and code walkthroughs.
 - Week 2: Assign small feature tasks with review and feedback.
 - Week 3+: Gradually increase complexity and responsibility.
+
+- Include Firebase setup and role management in onboarding.
 
 ### 2. Mentorship
 
@@ -25,6 +28,7 @@
 - All PRs require review by at least one senior developer.
 - Use inline comments for suggestions and explanations.
 - Document common mistakes and solutions in a shared wiki.
+- Review role-based access logic and ensure correct usage of Redux and hooks.
 
 ### 4. Knowledge Sharing
 

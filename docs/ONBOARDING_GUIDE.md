@@ -6,6 +6,13 @@ Welcome to the AI Learning Platform team! This guide will help you get started q
 
 - Clone the repository from GitHub.
 - Install dependencies: `npm install`
+- Set up Firebase:
+  - Create a Firebase project at https://console.firebase.google.com
+  - Add a web app and copy your config keys
+  - Enable Authentication (Email/Password or other providers)
+  - In Firestore, create a `users` collection to store roles
+  - Set custom claims for roles using Firebase Admin SDK (see Firebase docs)
+  - Add your config to `src/lib/firebase.ts`
 - Start the development server: `npm run dev`
 - Run tests: `npm test`
 

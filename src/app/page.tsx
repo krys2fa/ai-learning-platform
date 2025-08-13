@@ -36,11 +36,22 @@ export default function LandingPage() {
             </Button>
           </div>
         </section>
-
+        {/* AuthForm for login/register/logout */}
+        <section className="max-w-md w-full mx-auto mb-12">
+          {/* @ts-ignore-next-line */}
+          {typeof window !== "undefined" &&
+            require("../components/AuthForm").default()}
+        </section>
         <div className="max-w-4xl w-full mx-auto space-y-10 sm:space-y-12 md:space-y-16">
           <section className="glass-card p-8 sm:p-10 fade-in">
             <h2 className="accent-gradient text-2xl sm:text-3xl font-bold mb-6">
               What You&#39;ll Learn
+              {/* Role-based UI */}
+              <section className="max-w-2xl w-full mx-auto mb-12">
+                {/* @ts-ignore-next-line */}
+                {typeof window !== "undefined" &&
+                  require("../components/RoleBasedUI").default()}
+              </section>
             </h2>
             <ul className="space-y-3 sm:space-y-4">
               <li className="flex items-start text-gray-700">

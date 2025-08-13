@@ -19,6 +19,7 @@
 - [ ] Open PRs for code review before merging
 - [ ] Review code for standards, tests, and documentation
 - [ ] Resolve conflicts and document decisions
+- [ ] Ensure role-based access logic (Redux + Firebase) is implemented and reviewed
 
 ## Retrospectives
 
