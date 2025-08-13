@@ -1,19 +1,103 @@
 # AI Learning Platform
 
+## Overview
+
+A modern, scalable React/Next.js platform for AI education, featuring:
+
+- Beautiful, responsive UI (2025 CSS trends)
+- Modular architecture with reusable components
+- Comprehensive test coverage
+- Ready for web and mobile expansion
+
+## Features
+
+- Dashboard, Curriculum, Assignments, Exams, Leaderboard
+- Glassmorphism cards, accent gradients, animated buttons
+- Role-based navigation and access
+- Unit and integration tests (Jest, React Testing Library)
+- ESLint, Prettier, TypeScript
+
+## Technologies
+
+- React 19, Next.js 15, TypeScript
+- Tailwind CSS
+- Jest, React Testing Library
+- Lucide Icons
+
+## Getting Started
+
+1. **Install dependencies:**
+
+```bash
+npm install
+```
+
+2. **Run the app:**
+
+```bash
+npm run dev
+```
+
+3. **Run tests:**
+
+```bash
+npm run test
+```
+
+## Project Structure
+
+```
+src/
+  app/           # Main pages
+  components/    # Reusable UI components
+  __tests__/     # Unit and integration tests
+  lib/           # Utilities
+public/          # Static assets
+```
+
+## Coding Standards & Best Practices
+
+- Use functional components and hooks
+- Type all props and state
+- Keep components small and focused
+- Use Context API for shared state
+- Write tests for all components and pages
+- Use semantic HTML and ensure accessibility
+- Commit with clear messages and use feature branches
+
+## Deployment
+
+- Build: `npm run build`
+- Start: `npm run start`
+- Deploy to Vercel, Netlify, or your preferred platform
+
+## Contribution Guidelines
+
+- Fork and clone the repo
+- Create a feature branch
+- Write tests for new features
+- Submit a pull request with a clear description
+
+## License
+
+MIT
+
+# AI Learning Platform
+
 This is a modern, mobile-responsive AI learning platform built with [Next.js](https://nextjs.org). It offers a hands-on, beginner-friendly AI course for learners in Ghana and Nigeria, featuring live classes, assignments, exams, and a leaderboard.
 
 Live Preview: https://ai-learning-platform-olive.vercel.app/
 
 ## Features
 
--  **Mobile Responsive:** Fully optimized for all device sizes
--  **Leaderboard:** Track your rank and progress among fellow learners
--  **Live Classes:** Join interactive sessions with expert instructors
--  **Assignments & Exams:** Submit work, view grades, and track deadlines
--  **Curriculum:** Structured modules from AI basics to building apps
--  **Dashboard:** Monitor your learning stats and quick actions
--  **Student Testimonials:** Real feedback from past learners
--  **Scholarships & Enrollment:** Apply for financial aid or enroll directly
+- **Mobile Responsive:** Fully optimized for all device sizes
+- **Leaderboard:** Track your rank and progress among fellow learners
+- **Live Classes:** Join interactive sessions with expert instructors
+- **Assignments & Exams:** Submit work, view grades, and track deadlines
+- **Curriculum:** Structured modules from AI basics to building apps
+- **Dashboard:** Monitor your learning stats and quick actions
+- **Student Testimonials:** Real feedback from past learners
+- **Scholarships & Enrollment:** Apply for financial aid or enroll directly
 
 ## Tech Stack
 
