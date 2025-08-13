@@ -6,14 +6,14 @@ Live Preview: https://ai-learning-platform-olive.vercel.app/
 
 ## Features
 
-- 📱 **Mobile Responsive:** Fully optimized for all device sizes
-- 🏆 **Leaderboard:** Track your rank and progress among fellow learners
-- 🎓 **Live Classes:** Join interactive sessions with expert instructors
-- 📝 **Assignments & Exams:** Submit work, view grades, and track deadlines
-- 📚 **Curriculum:** Structured modules from AI basics to building apps
-- 👩‍💻 **Dashboard:** Monitor your learning stats and quick actions
-- 💬 **Student Testimonials:** Real feedback from past learners
-- 🔒 **Scholarships & Enrollment:** Apply for financial aid or enroll directly
+-  **Mobile Responsive:** Fully optimized for all device sizes
+-  **Leaderboard:** Track your rank and progress among fellow learners
+-  **Live Classes:** Join interactive sessions with expert instructors
+-  **Assignments & Exams:** Submit work, view grades, and track deadlines
+-  **Curriculum:** Structured modules from AI basics to building apps
+-  **Dashboard:** Monitor your learning stats and quick actions
+-  **Student Testimonials:** Real feedback from past learners
+-  **Scholarships & Enrollment:** Apply for financial aid or enroll directly
 
 ## Tech Stack
 
