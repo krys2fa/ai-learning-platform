@@ -4,13 +4,14 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDb5qFLbaAY5dIsZJKkmwpwHN-rpAaQeEI",
-  authDomain: "ai-learning-platform-f9093.firebaseapp.com",
-  projectId: "ai-learning-platform-f9093",
-  storageBucket: "ai-learning-platform-f9093.firebasestorage.app",
-  messagingSenderId: "175324646066",
-  appId: "1:175324646066:web:eb4a3f2bfd6c71be3dd7ab",
-  measurementId: "G-KYLWTZPR1X",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY as string,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN as string,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID as string,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET as string,
+  messagingSenderId: process.env
+    .NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID as string,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID as string,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID as string,
 };
 
 const app = initializeApp(firebaseConfig);

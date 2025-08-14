@@ -37,3 +37,32 @@ jest.mock("lucide-react", () => {
     }
   );
 });
+
+// Mock Firebase SDK to avoid real initialization in tests
+jest.mock("firebase/app", () => {
+  return {
+    __esModule: true,
+    initializeApp: jest.fn(() => ({ mockApp: true })),
+  };
+});
+
+jest.mock("firebase/auth", () => {
+  return {
+    __esModule: true,
+    getAuth: jest.fn(() => ({
+      onAuthStateChanged: jest.fn(),
+      currentUser: null,
+      signOut: jest.fn(),
+    })),
+  };
+});
+
+jest.mock("firebase/firestore", () => {
+  return {
+    __esModule: true,
+    getFirestore: jest.fn(() => ({ mockDb: true })),
+    doc: jest.fn(),
+    setDoc: jest.fn(),
+    getDoc: jest.fn(),
+  };
+});

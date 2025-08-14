@@ -32,14 +32,34 @@ A modern, scalable React/Next.js platform for AI education, featuring:
 npm install
 ```
 
-2. **Set up Firebase:**
+2. **Environment variables (Firebase):**
 
-- Create a Firebase project at https://console.firebase.google.com
-- Add a web app and copy your config keys
-- Enable Authentication (Email/Password or other providers)
-- In Firestore, create a `users` collection to store roles
-- Set custom claims for roles using Firebase Admin SDK (see Firebase docs)
-- Add your config to `src/lib/firebase.ts`
+- Copy the example file and add your Firebase Web App config values:
+  - Create a web app in your Firebase project and copy the config from Project Settings → Your apps → Web app.
+  - Then create `.env.local` in the project root based on the example:
+
+```
+# copy the example
+# Windows (PowerShell)
+Copy-Item .env.local.example .env.local
+```
+
+```
+# required keys (paste values from Firebase)
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=...
+```
+
+Notes:
+
+- Do not commit `.env.local` (already ignored via `.gitignore`).
+- After changing env vars, restart the dev server.
+- Next.js exposes variables prefixed with `NEXT_PUBLIC_` to the client.
 
 3. **Run the app:**
 

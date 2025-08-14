@@ -60,10 +60,16 @@ const AuthForm: React.FC = () => {
         // Redirect to dashboard
         router.push("/dashboard");
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : typeof err === "string"
+          ? err
+          : "Something went wrong. Please try again.";
+      setError(message);
       setToastTitle(isRegister ? "Registration failed" : "Login failed");
-      setToastDesc(err?.message || "Something went wrong. Please try again.");
+      setToastDesc(message);
       setToastActionHref(null);
       setToastActionLabel(null);
       setToastIsError(true);

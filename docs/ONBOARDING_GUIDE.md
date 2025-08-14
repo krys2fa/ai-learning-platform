@@ -12,7 +12,8 @@ Welcome to the AI Learning Platform team! This guide will help you get started q
   - Enable Authentication (Email/Password or other providers)
   - In Firestore, create a `users` collection to store roles
   - Set custom claims for roles using Firebase Admin SDK (see Firebase docs)
-  - Add your config to `src/lib/firebase.ts`
+  - Create a `.env.local` file from `.env.local.example` and paste your Firebase Web App config values into the `NEXT_PUBLIC_FIREBASE_*` keys
+  - The app reads these automatically from `process.env` in `src/lib/firebase.ts`
 - Start the development server: `npm run dev`
 - Run tests: `npm test`
 
