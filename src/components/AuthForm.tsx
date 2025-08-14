@@ -6,6 +6,7 @@ import { register, login, logout } from "../lib/authService";
 import * as Toast from "@radix-ui/react-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -20,12 +21,14 @@ const AuthForm: React.FC = () => {
   const [toastActionHref, setToastActionHref] = useState<string | null>(null);
   const [toastActionLabel, setToastActionLabel] = useState<string | null>(null);
   const [toastIsError, setToastIsError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setLoading(true));
+    setIsSubmitting(true);
     setError(null);
     setSuccess(null);
     try {
@@ -76,6 +79,7 @@ const AuthForm: React.FC = () => {
       setToastOpen(true);
     }
     dispatch(setLoading(false));
+    setIsSubmitting(false);
   };
 
   // Logout is now available from the top navigation only
@@ -112,14 +116,34 @@ const AuthForm: React.FC = () => {
           />
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            aria-busy={isSubmitting}
+            aria-disabled={isSubmitting}
+            disabled={isSubmitting}
+            className={`w-full inline-flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded transition ${
+              isSubmitting
+                ? "opacity-70 cursor-not-allowed"
+                : "hover:bg-blue-700"
+            }`}
           >
-            {isRegister ? "Register" : "Login"}
+            {isSubmitting ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                {isRegister ? "Registering..." : "Signing in..."}
+              </>
+            ) : (
+              <>{isRegister ? "Register" : "Login"}</>
+            )}
           </button>
           <button
             type="button"
-            className="w-full mt-2 bg-gray-200 py-2 rounded hover:bg-gray-300 transition"
-            onClick={() => setIsRegister(!isRegister)}
+            aria-disabled={isSubmitting}
+            disabled={isSubmitting}
+            className={`w-full mt-2 bg-gray-200 py-2 rounded transition ${
+              isSubmitting
+                ? "opacity-70 cursor-not-allowed"
+                : "hover:bg-gray-300"
+            }`}
+            onClick={() => !isSubmitting && setIsRegister(!isRegister)}
           >
             {isRegister
               ? "Already have an account? Login"

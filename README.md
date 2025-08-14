@@ -17,6 +17,10 @@ A modern, scalable React/Next.js platform for AI education, featuring:
 - Unit and integration tests (Jest, React Testing Library)
 - ESLint, Prettier, TypeScript
 
+## Demo
+
+Live Link: https://ai-learning-platform-olive.vercel.app/
+
 ## Technologies
 
 - React 19, Next.js 15, TypeScript
