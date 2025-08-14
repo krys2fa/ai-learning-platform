@@ -1,8 +1,8 @@
+"use client";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setLoading } from "../store/authSlice";
 import { register, login, logout } from "../lib/authService";
-import { auth } from "../lib/firebase";
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -10,29 +10,29 @@ const AuthForm: React.FC = () => {
   const [displayName, setDisplayName] = useState("");
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setLoading(true));
     setError(null);
+    setSuccess(null);
     try {
       if (isRegister) {
-        const user = await register(email, password, displayName);
-        dispatch(
-          setUser({
-            uid: user.uid,
-            email: user.email || "",
-            role: "student",
-          })
-        );
+        await register(email, password, displayName);
+        // End registration by signing out and prompting user to log in
+        await logout();
+        dispatch(setUser(null));
+        setIsRegister(false);
+        setSuccess("Registration successful. Please log in.");
       } else {
         const user = await login(email, password);
         dispatch(
           setUser({
             uid: user.uid,
             email: user.email || "",
-            role: "student", // role should be fetched from Firestore or custom claims
+            role: "admin", // default to admin per project requirement
           })
         );
       }
@@ -101,6 +101,7 @@ const AuthForm: React.FC = () => {
           Logout
         </button>
         {error && <div className="text-red-500 mt-2">{error}</div>}
+        {success && <div className="text-green-600 mt-2">{success}</div>}
       </form>
     </div>
   );

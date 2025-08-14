@@ -1,3 +1,4 @@
+"use client";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -22,7 +23,13 @@ const useAuth = () => {
             setUser({
               uid: user.uid,
               email: user.email || "",
-              role: tokenResult.claims.role || "student",
+              role:
+                ((tokenResult.claims as Record<string, unknown>).role as
+                  | "superadmin"
+                  | "admin"
+                  | "teacher"
+                  | "student"
+                  | undefined) || "admin",
             })
           );
         } else {

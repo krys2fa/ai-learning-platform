@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import ClientNavigation from "@/components/ClientNavigation";
+import AuthForm from "@/components/AuthForm";
+import RoleBasedUI from "@/components/RoleBasedUI";
 
 export default function LandingPage() {
   return (
@@ -37,10 +39,8 @@ export default function LandingPage() {
           </div>
         </section>
         {/* AuthForm for login/register/logout */}
-        <section className="max-w-md w-full mx-auto mb-12">
-          {/* @ts-ignore-next-line */}
-          {typeof window !== "undefined" &&
-            require("../components/AuthForm").default()}
+        <section id="auth" className="max-w-md w-full mx-auto mb-12">
+          <AuthForm />
         </section>
         <div className="max-w-4xl w-full mx-auto space-y-10 sm:space-y-12 md:space-y-16">
           <section className="glass-card p-8 sm:p-10 fade-in">
@@ -48,9 +48,7 @@ export default function LandingPage() {
               What You&#39;ll Learn
               {/* Role-based UI */}
               <section className="max-w-2xl w-full mx-auto mb-12">
-                {/* @ts-ignore-next-line */}
-                {typeof window !== "undefined" &&
-                  require("../components/RoleBasedUI").default()}
+                <RoleBasedUI />
               </section>
             </h2>
             <ul className="space-y-3 sm:space-y-4">

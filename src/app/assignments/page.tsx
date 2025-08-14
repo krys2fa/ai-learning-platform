@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import ClientNavigation from "@/components/ClientNavigation";
+import ProtectedRoute from "@/lib/ProtectedRoute";
 
 export default function Assignments() {
   const assignments = [
@@ -94,235 +96,239 @@ export default function Assignments() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
-      <ClientNavigation />
-      <div className="py-10 px-4 sm:px-8 flex flex-col items-center">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-6 sm:mb-8">
-            <h1 className="accent-gradient text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
-              Assignments
-            </h1>
-            <p className="text-lg text-gray-600">
-              Track your assignments and submissions.
-            </p>
-          </div>
+    <ProtectedRoute
+      allowedRoles={["superadmin", "admin", "teacher", "student"]}
+    >
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-cyan-100">
+        <ClientNavigation />
+        <div className="py-10 px-4 sm:px-8 flex flex-col items-center">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-6 sm:mb-8">
+              <h1 className="accent-gradient text-4xl sm:text-5xl font-extrabold mb-4 leading-tight">
+                Assignments
+              </h1>
+              <p className="text-lg text-gray-600">
+                Track your assignments and submissions.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xs sm:text-sm font-medium">
-                  Total
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-xl sm:text-2xl font-bold">15</div>
-              </CardContent>
-            </Card>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+              <Card className="hover:shadow-md transition-shadow">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs sm:text-sm font-medium">
+                    Total
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-xl sm:text-2xl font-bold">15</div>
+                </CardContent>
+              </Card>
 
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xs sm:text-sm font-medium">
-                  Submitted
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-xl sm:text-2xl font-bold text-green-600">
-                  8
-                </div>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs sm:text-sm font-medium">
+                    Submitted
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-xl sm:text-2xl font-bold text-green-600">
+                    8
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xs sm:text-sm font-medium">
-                  Pending
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-xl sm:text-2xl font-bold text-blue-600">
-                  5
-                </div>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs sm:text-sm font-medium">
+                    Pending
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-xl sm:text-2xl font-bold text-blue-600">
+                    5
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xs sm:text-sm font-medium">
-                  Average Grade
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-xl sm:text-2xl font-bold text-purple-600">
-                  B+
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+              <Card className="hover:shadow-md transition-shadow">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs sm:text-sm font-medium">
+                    Average Grade
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-xl sm:text-2xl font-bold text-purple-600">
+                    B+
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-          <div className="space-y-4 sm:space-y-6">
-            {assignments.map((assignment) => {
-              const daysUntilDue = getDaysUntilDue(assignment.dueDate);
+            <div className="space-y-4 sm:space-y-6">
+              {assignments.map((assignment) => {
+                const daysUntilDue = getDaysUntilDue(assignment.dueDate);
 
-              return (
-                <Card
-                  key={assignment.id}
-                  className="hover:shadow-md transition-shadow"
-                >
-                  <CardContent className="p-4 sm:p-6">
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-4 lg:space-y-0">
-                      <div className="flex items-start space-x-3 sm:space-x-4 flex-1">
-                        <div className="flex-shrink-0 mt-1">
-                          {getStatusIcon(assignment.status)}
-                        </div>
-                        <div className="flex-grow min-w-0">
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 mb-2">
-                            <h3 className="text-base sm:text-lg font-semibold text-gray-900 break-words">
-                              {assignment.title}
-                            </h3>
-                            <span
-                              className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                                assignment.status
-                              )} mt-1 sm:mt-0`}
-                            >
-                              {assignment.status.charAt(0).toUpperCase() +
-                                assignment.status.slice(1)}
-                            </span>
+                return (
+                  <Card
+                    key={assignment.id}
+                    className="hover:shadow-md transition-shadow"
+                  >
+                    <CardContent className="p-4 sm:p-6">
+                      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-4 lg:space-y-0">
+                        <div className="flex items-start space-x-3 sm:space-x-4 flex-1">
+                          <div className="flex-shrink-0 mt-1">
+                            {getStatusIcon(assignment.status)}
                           </div>
-                          <p className="text-sm sm:text-base text-gray-600 mb-2 break-words">
-                            {assignment.description}
-                          </p>
-                          <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-gray-500 space-y-1 sm:space-y-0 sm:space-x-4">
-                            <span className="font-medium">
-                              {assignment.course}
-                            </span>
-                            <span className="hidden sm:inline">•</span>
-                            <span>{assignment.points} points</span>
-                            <span className="hidden sm:inline">•</span>
-                            <span>Due: {assignment.dueDate}</span>
-                            {assignment.status !== "submitted" &&
-                              daysUntilDue >= 0 && (
+                          <div className="flex-grow min-w-0">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 mb-2">
+                              <h3 className="text-base sm:text-lg font-semibold text-gray-900 break-words">
+                                {assignment.title}
+                              </h3>
+                              <span
+                                className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                                  assignment.status
+                                )} mt-1 sm:mt-0`}
+                              >
+                                {assignment.status.charAt(0).toUpperCase() +
+                                  assignment.status.slice(1)}
+                              </span>
+                            </div>
+                            <p className="text-sm sm:text-base text-gray-600 mb-2 break-words">
+                              {assignment.description}
+                            </p>
+                            <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-gray-500 space-y-1 sm:space-y-0 sm:space-x-4">
+                              <span className="font-medium">
+                                {assignment.course}
+                              </span>
+                              <span className="hidden sm:inline">•</span>
+                              <span>{assignment.points} points</span>
+                              <span className="hidden sm:inline">•</span>
+                              <span>Due: {assignment.dueDate}</span>
+                              {assignment.status !== "submitted" &&
+                                daysUntilDue >= 0 && (
+                                  <>
+                                    <span className="hidden sm:inline">•</span>
+                                    <span
+                                      className={
+                                        daysUntilDue <= 2
+                                          ? "text-red-600 font-medium"
+                                          : ""
+                                      }
+                                    >
+                                      {daysUntilDue === 0
+                                        ? "Due today"
+                                        : `${daysUntilDue} days left`}
+                                    </span>
+                                  </>
+                                )}
+                              {assignment.status === "overdue" && (
                                 <>
                                   <span className="hidden sm:inline">•</span>
-                                  <span
-                                    className={
-                                      daysUntilDue <= 2
-                                        ? "text-red-600 font-medium"
-                                        : ""
-                                    }
-                                  >
-                                    {daysUntilDue === 0
-                                      ? "Due today"
-                                      : `${daysUntilDue} days left`}
+                                  <span className="text-red-600 font-medium">
+                                    {Math.abs(daysUntilDue)} days overdue
                                   </span>
                                 </>
                               )}
-                            {assignment.status === "overdue" && (
-                              <>
-                                <span className="hidden sm:inline">•</span>
-                                <span className="text-red-600 font-medium">
-                                  {Math.abs(daysUntilDue)} days overdue
-                                </span>
-                              </>
+                            </div>
+                            {assignment.submittedDate && (
+                              <div className="text-xs sm:text-sm text-gray-500 mt-1">
+                                Submitted: {assignment.submittedDate}
+                              </div>
                             )}
                           </div>
-                          {assignment.submittedDate && (
-                            <div className="text-xs sm:text-sm text-gray-500 mt-1">
-                              Submitted: {assignment.submittedDate}
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 lg:flex-shrink-0">
+                          {assignment.grade && (
+                            <div className="text-center">
+                              <div className="text-lg font-bold text-green-600">
+                                {assignment.grade}
+                              </div>
+                              <div className="text-xs text-gray-500">Grade</div>
                             </div>
+                          )}
+
+                          {assignment.status === "submitted" && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full sm:w-auto text-xs sm:text-sm"
+                            >
+                              View Feedback
+                            </Button>
+                          )}
+
+                          {assignment.status === "pending" && (
+                            <Button
+                              size="sm"
+                              className="w-full sm:w-auto text-xs sm:text-sm"
+                            >
+                              Submit
+                            </Button>
+                          )}
+
+                          {assignment.status === "overdue" && (
+                            <Button
+                              variant="destructive"
+                              size="sm"
+                              className="w-full sm:w-auto text-xs sm:text-sm"
+                            >
+                              Submit Late
+                            </Button>
+                          )}
+
+                          {assignment.status === "upcoming" && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              disabled
+                              className="w-full sm:w-auto text-xs sm:text-sm"
+                            >
+                              Not Available
+                            </Button>
                           )}
                         </div>
                       </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
 
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 lg:flex-shrink-0">
-                        {assignment.grade && (
-                          <div className="text-center">
-                            <div className="text-lg font-bold text-green-600">
-                              {assignment.grade}
-                            </div>
-                            <div className="text-xs text-gray-500">Grade</div>
-                          </div>
-                        )}
-
-                        {assignment.status === "submitted" && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="w-full sm:w-auto text-xs sm:text-sm"
-                          >
-                            View Feedback
-                          </Button>
-                        )}
-
-                        {assignment.status === "pending" && (
-                          <Button
-                            size="sm"
-                            className="w-full sm:w-auto text-xs sm:text-sm"
-                          >
-                            Submit
-                          </Button>
-                        )}
-
-                        {assignment.status === "overdue" && (
-                          <Button
-                            variant="destructive"
-                            size="sm"
-                            className="w-full sm:w-auto text-xs sm:text-sm"
-                          >
-                            Submit Late
-                          </Button>
-                        )}
-
-                        {assignment.status === "upcoming" && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            disabled
-                            className="w-full sm:w-auto text-xs sm:text-sm"
-                          >
-                            Not Available
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            <Card className="mt-8">
+              <CardHeader>
+                <CardTitle>Assignment Guidelines</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">
+                      Submission Requirements:
+                    </h4>
+                    <ul className="space-y-1 text-sm text-gray-600">
+                      <li>• Submit assignments before the due date</li>
+                      <li>• Follow the specified format and word count</li>
+                      <li>• Include proper citations and references</li>
+                      <li>• Use clear and professional language</li>
+                      <li>• Ensure all files are properly uploaded</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Grading Criteria:</h4>
+                    <ul className="space-y-1 text-sm text-gray-600">
+                      <li>• Quality and depth of content (40%)</li>
+                      <li>• Technical accuracy and understanding (30%)</li>
+                      <li>• Creativity and originality (15%)</li>
+                      <li>• Presentation and formatting (10%)</li>
+                      <li>• Timeliness of submission (5%)</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-
-          <Card className="mt-8">
-            <CardHeader>
-              <CardTitle>Assignment Guidelines</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-semibold mb-2">
-                    Submission Requirements:
-                  </h4>
-                  <ul className="space-y-1 text-sm text-gray-600">
-                    <li>• Submit assignments before the due date</li>
-                    <li>• Follow the specified format and word count</li>
-                    <li>• Include proper citations and references</li>
-                    <li>• Use clear and professional language</li>
-                    <li>• Ensure all files are properly uploaded</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Grading Criteria:</h4>
-                  <ul className="space-y-1 text-sm text-gray-600">
-                    <li>• Quality and depth of content (40%)</li>
-                    <li>• Technical accuracy and understanding (30%)</li>
-                    <li>• Creativity and originality (15%)</li>
-                    <li>• Presentation and formatting (10%)</li>
-                    <li>• Timeliness of submission (5%)</li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 }
