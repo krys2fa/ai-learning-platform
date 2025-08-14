@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setLoading } from "../store/authSlice";
 import { register, login, logout } from "../lib/authService";
+import * as Toast from "@radix-ui/react-toast";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const AuthForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +14,13 @@ const AuthForm: React.FC = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastTitle, setToastTitle] = useState<string>("");
+  const [toastDesc, setToastDesc] = useState<string>("");
+  const [toastActionHref, setToastActionHref] = useState<string | null>(null);
+  const [toastActionLabel, setToastActionLabel] = useState<string | null>(null);
+  const [toastIsError, setToastIsError] = useState(false);
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,6 +36,12 @@ const AuthForm: React.FC = () => {
         dispatch(setUser(null));
         setIsRegister(false);
         setSuccess("Registration successful. Please log in.");
+        setToastTitle("Registration successful");
+        setToastDesc("Please log in to continue.");
+        setToastActionHref("/#auth");
+        setToastActionLabel("Go to Login");
+        setToastIsError(false);
+        setToastOpen(true);
       } else {
         const user = await login(email, password);
         dispatch(
@@ -35,75 +51,106 @@ const AuthForm: React.FC = () => {
             role: "admin", // default to admin per project requirement
           })
         );
+        setToastTitle("Login successful");
+        setToastDesc("Welcome back! You're now signed in.");
+        setToastActionHref("/dashboard");
+        setToastActionLabel("Go to Dashboard");
+        setToastIsError(false);
+        setToastOpen(true);
+        // Redirect to dashboard
+        router.push("/dashboard");
       }
     } catch (err: any) {
       setError(err.message);
+      setToastTitle(isRegister ? "Registration failed" : "Login failed");
+      setToastDesc(err?.message || "Something went wrong. Please try again.");
+      setToastActionHref(null);
+      setToastActionLabel(null);
+      setToastIsError(true);
+      setToastOpen(true);
     }
     dispatch(setLoading(false));
   };
 
-  const handleLogout = async () => {
-    dispatch(setLoading(true));
-    await logout();
-    dispatch(setUser(null));
-    dispatch(setLoading(false));
-  };
+  // Logout is now available from the top navigation only
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md">
-      <form onSubmit={handleSubmit}>
-        {isRegister && (
+    <Toast.Provider swipeDirection="right" duration={4000}>
+      <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md">
+        <form onSubmit={handleSubmit}>
+          {isRegister && (
+            <input
+              type="text"
+              placeholder="Display Name"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              className="w-full mb-2 p-2 border rounded"
+              required
+            />
+          )}
           <input
-            type="text"
-            placeholder="Display Name"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full mb-2 p-2 border rounded"
             required
           />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full mb-2 p-2 border rounded"
+            required
+          />
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            {isRegister ? "Register" : "Login"}
+          </button>
+          <button
+            type="button"
+            className="w-full mt-2 bg-gray-200 py-2 rounded hover:bg-gray-300 transition"
+            onClick={() => setIsRegister(!isRegister)}
+          >
+            {isRegister
+              ? "Already have an account? Login"
+              : "No account? Register"}
+          </button>
+          {error && <div className="text-red-500 mt-2">{error}</div>}
+          {success && <div className="text-green-600 mt-2">{success}</div>}
+        </form>
+      </div>
+      <Toast.Root
+        open={toastOpen}
+        onOpenChange={setToastOpen}
+        className={`${
+          toastIsError ? "bg-red-600" : "bg-gray-900"
+        } text-white rounded-md shadow-lg px-4 py-3 grid gap-1 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-right-full`}
+      >
+        <Toast.Title className="text-sm font-semibold">
+          {toastTitle}
+        </Toast.Title>
+        {toastDesc && (
+          <Toast.Description className="text-xs text-gray-200">
+            {toastDesc}
+          </Toast.Description>
         )}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-2 p-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-2 p-2 border rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-        >
-          {isRegister ? "Register" : "Login"}
-        </button>
-        <button
-          type="button"
-          className="w-full mt-2 bg-gray-200 py-2 rounded hover:bg-gray-300 transition"
-          onClick={() => setIsRegister(!isRegister)}
-        >
-          {isRegister
-            ? "Already have an account? Login"
-            : "No account? Register"}
-        </button>
-        <button
-          type="button"
-          className="w-full mt-2 bg-red-500 text-white py-2 rounded hover:bg-red-600 transition"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-        {error && <div className="text-red-500 mt-2">{error}</div>}
-        {success && <div className="text-green-600 mt-2">{success}</div>}
-      </form>
-    </div>
+        {toastActionHref && toastActionLabel && (
+          <Toast.Action asChild altText={toastActionLabel}>
+            <Link
+              href={toastActionHref}
+              className="mt-2 inline-flex items-center justify-center px-3 py-1.5 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition text-xs font-medium"
+            >
+              {toastActionLabel}
+            </Link>
+          </Toast.Action>
+        )}
+      </Toast.Root>
+      <Toast.Viewport className="fixed bottom-4 right-4 w-96 max-w-[calc(100%-32px)] z-50 outline-none" />
+    </Toast.Provider>
   );
 };
 

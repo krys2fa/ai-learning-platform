@@ -2,8 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { setLoading, setUser } from "@/store/authSlice";
+import { logout as fbLogout } from "@/lib/authService";
 import {
   LayoutDashboard,
   BookOpen,
@@ -28,6 +32,17 @@ const navigation = [
 export default function Navigation() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    dispatch(setLoading(true));
+    await fbLogout();
+    dispatch(setUser(null));
+    dispatch(setLoading(false));
+    router.push("/");
+  };
 
   return (
     <nav className="glass-card fade-in border-none shadow-xl mb-4">
@@ -60,6 +75,18 @@ export default function Navigation() {
                 );
               })}
             </div>
+          </div>
+
+          {/* Desktop auth actions */}
+          <div className="hidden md:flex items-center">
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="inline-flex items-center px-3 py-2 rounded-md bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition"
+              >
+                Logout
+              </button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -102,6 +129,17 @@ export default function Navigation() {
               </Link>
             );
           })}
+          {user && (
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                handleLogout();
+              }}
+              className="w-full mt-2 inline-flex items-center justify-center px-3 py-2 rounded-md bg-red-600 text-white text-base font-medium hover:bg-red-700 transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>
