@@ -24,6 +24,54 @@ A modern, scalable React/Next.js platform for AI education, featuring:
 - Jest, React Testing Library
 - Lucide Icons
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="../src/screenshots/landing.png" alt="Landing Page" width="420" />
+      <br />
+      <sub>Landing Page</sub>
+    </td>
+    <td align="center">
+      <img src="../src/screenshots/dashboard.png" alt="Dashboard" width="420" />
+      <br />
+      <sub>Dashboard</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="../src/screenshots/assignments.png" alt="Assignments" width="420" />
+      <br />
+      <sub>Assignments</sub>
+    </td>
+    <td align="center">
+      <img src="../src/screenshots/exams.png" alt="Exams" width="420" />
+      <br />
+      <sub>Exams</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="../src/screenshots/classes.png" alt="Classes" width="420" />
+      <br />
+      <sub>Classes</sub>
+    </td>
+    <td align="center">
+      <img src="../src/screenshots/leaderboard.png" alt="Leaderboard" width="420" />
+      <br />
+      <sub>Leaderboard</sub>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <img src="../src/screenshots/curriculum.png" alt="Curriculum" width="700" />
+      <br />
+      <sub>Curriculum</sub>
+    </td>
+  </tr>
+</table>
+
 ## Getting Started
 
 1. **Install dependencies:**
